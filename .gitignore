@@ -1,0 +1,44 @@
+# Virtual environment
+venv/
+*.pyc
+__pycache__/
+
+# Django specific
+db.sqlite3
+core/migrations/
+terrafarm/__pycache__/
+core/__pycache__/
+
+# Environment variables
+.env
+
+# Docker specific
+*.log
+docker-compose.override.yml
+.env.db
+
+# Python packaging
+*.egg
+*.egg-info/
+dist/
+build/
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+env/
+bin/
+lib/
+lib64/
+scripts/
+pyvenv.cfg
+
+# Other IDE specific
+.vscode/
+.idea/
