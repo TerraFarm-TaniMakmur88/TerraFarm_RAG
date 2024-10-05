@@ -42,3 +42,5 @@ pyvenv.cfg
 # Other IDE specific
 .vscode/
 .idea/
+
+db

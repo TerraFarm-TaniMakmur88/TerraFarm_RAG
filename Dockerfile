@@ -1,21 +1,23 @@
-
-# Gunakan image Python
+# Use Python 3.10 slim image
 FROM python:3.10-slim
 
-# Set workdir
+# Set working directory
 WORKDIR /app
 
-# Copy file requirement.txt ke container
-COPY requirements.txt .
+# Install system dependencies and pymupdf
+RUN apt-get update && apt-get install -y \
+    libmupdf-dev \
+    && rm -rf /var/lib/apt/lists/*
 
-# Install dependencies
+# Install Python dependencies
+COPY requirements.txt .
 RUN pip install -r requirements.txt
 
-# Copy semua file ke container
+# Copy all app files to the container
 COPY . .
 
-# Expose port yang akan digunakan Django
+# Expose port 8000 for Django
 EXPOSE 8000
 
-# Jalankan perintah untuk menjalankan server Django
+# Run Django development server
 CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]

@@ -5,6 +5,8 @@ import whisper
 import tempfile
 import os
 import uuid
+import json
+from .rag import answer_question
 import tempfile
 from dotenv import load_dotenv
 from elevenlabs import VoiceSettings
@@ -101,4 +103,18 @@ def text_to_speech_file(request):
     else:
         return JsonResponse({'error': 'Invalid request method.'}, status=405)
 
-
+@csrf_exempt
+def rag_answer(request):
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        question = data.get('question', '')
+        if question:
+            try:
+                answer = answer_question(question)
+                return JsonResponse({'answer': answer})
+            except Exception as e:
+                return JsonResponse({'error': str(e)}, status=500)
+        else:
+            return JsonResponse({'error': 'No question provided.'}, status=400)
+    else:
+        return JsonResponse({'error': 'Invalid request method.'}, status=405)
