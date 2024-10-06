@@ -61,7 +61,8 @@ MIDDLEWARE = [
 # ]
 
 CORS_ALLOWED_ORIGINS = [
-    'http://localhost:3000',  # Allow requests from your React app
+    'http://localhost:3000',
+    'https://terra-farm.vercel.app'  # Allow requests from your React app
 ]
 
 CORS_ALLOW_CREDENTIALS = True
